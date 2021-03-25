@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="day_background">
+        <item name="android:background">@drawable/day_background</item>
+    </style>
+
+    <style name="night_background">
+        <item name="android:background">@drawable/night_background</item>
+    </style>
+
+    <style name="add_day_background">
+        <item name="android:background">@drawable/day_background_blur_new</item>
+    </style>
+
+    <style name="add_night_background">
+        <item name="android:background">@drawable/night_background_blur</item>
+    </style>
+
+    <style name="add_task_name_day">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">@color/gray_trans</item>
+        <item name="android:fontFamily">@font/texgyreadventor</item>
+        <item name="android:hint">@string/input_task</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="add_task_name_night">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:fontFamily">@font/texgyreadventor</item>
+        <item name="android:hint">@string/input_task</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="add_task_description_day">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:hint">@string/input_description</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="add_task_description_night">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:hint">@string/input_description</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="add_task_date_night">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:hint">@string/input_date</item>
+    </style
+
+        ><style name="add_task_date_day">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:hint">@string/input_date</item>
+    </style>
+
+    <style name="add_task_button_day">
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:text">@string/add</item>
+        <item name="android:textColor">@color/add_button_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:background">@drawable/button_wh_normal</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">258dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="add_task_button_night">
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:text">@string/add</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:background">@drawable/button_wh_normal</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">258dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="add_subtask_button_day">
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:text">@string/add_subtask</item>
+        <item name="android:textColor">@color/add_button_text</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:background">@drawable/button_wh_normal</item>
+        <item name="android:drawableLeft">@drawable/ic_plus</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:layout_width">258dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="add_subtask_button_night">
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:layout_marginEnd">3dp</item>
+        <item name="android:text">@string/add_subtask</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:background">@drawable/button_wh_normal</item>
+        <item name="android:drawableLeft">@drawable/ic_plus</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:layout_width">258dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="fab_day">
+        <item name="backgroundTint">#FFD455</item>
+        <item name="tint">@color/white</item>
+        <item name="android:src">@drawable/ic_add</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="fab_night">
+        <item name="backgroundTint">#B163FF</item>
+        <item name="tint">@color/white</item>
+        <item name="android:src">@drawable/ic_add</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="add_update_button">
+        <item name="android:background">@drawable/selector_add_update</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="holder_of_edits_day">
+        <item name="android:background">@drawable/task_holder_background_day</item>
+    </style>
+
+    <style name="holder_of_edits_night">
+        <item name="android:background">@drawable/task_holder_background_night</item>
+    </style>
+
+    <style name="task_holder_day">
+        <item name="android:background">@drawable/task_holder_background_day</item>
+    </style>
+
+    <style name="task_holder_night">
+        <item name="android:background">@drawable/task_holder_background_night</item>
+    </style>
+
+    <style name="task_holder_text_day">
+        <item name="android:textColor">@color/task_text_day</item>
+        <item name="fontFamily">@font/texgyreadventor</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:width">300dp</item>
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="task_holder_text_night">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/texgyreadventor</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:width">300dp</item>
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="task_holder_date_day">
+        <item name="android:textColor">@color/task_text_day</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:width">40dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="task_holder_date_night">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:width">40dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+</resources>

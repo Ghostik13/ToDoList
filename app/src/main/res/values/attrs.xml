@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="mainBackground" format="reference" />
+    <attr name="addPageBackground" format="reference" />
+    <attr name="fabColor" format="reference" />
+    <attr name="taskHolder" format="reference"/>
+    <attr name="textInHolder" format="reference"/>
+    <attr name="dateInHolder" format="reference"/>
+    <attr name="holderOfEdits" format="reference"/>
+    <attr name="inputTaskName" format="reference"/>
+    <attr name="inputTaskDescription" format="reference"/>
+    <attr name="inputTaskDate" format="reference"/>
+    <attr name="addTaskButton" format="reference"/>
+    <attr name="addSubtaskButton" format="reference"/>
+    <attr name="switchStyle" format="reference"/>
+
+</resources>

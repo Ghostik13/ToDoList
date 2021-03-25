@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="MyTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="mainBackground">@style/night_background</item>
+        <item name="fabColor">@style/fab_night</item>
+        <item name="taskHolder">@style/task_holder_night</item>
+        <item name="textInHolder">@style/task_holder_text_night</item>
+        <item name="dateInHolder">@style/task_holder_date_night</item>
+        <item name="addPageBackground">@style/add_night_background</item>
+        <item name="holderOfEdits">@style/holder_of_edits_night</item>
+        <item name="inputTaskName">@style/add_task_name_night</item>
+        <item name="inputTaskDescription">@style/add_task_description_night</item>
+        <item name="inputTaskDate">@style/add_task_date_night</item>
+        <item name="addTaskButton">@style/add_task_button_night</item>
+        <item name="addSubtaskButton">@style/add_subtask_button_night</item>
+    </style>
+</resources>
