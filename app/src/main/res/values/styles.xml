@@ -25,7 +25,7 @@
         <item name="android:fontFamily">@font/texgyreadventor</item>
         <item name="android:hint">@string/input_task</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">32sp</item>
     </style>
 
     <style name="add_task_name_night">
@@ -36,6 +36,7 @@
         <item name="android:fontFamily">@font/texgyreadventor</item>
         <item name="android:hint">@string/input_task</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textSize">32sp</item>
     </style>
 
     <style name="add_task_description_day">
@@ -46,6 +47,7 @@
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:hint">@string/input_description</item>
         <item name="android:gravity">top</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="add_task_description_night">
@@ -56,6 +58,7 @@
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:hint">@string/input_description</item>
         <item name="android:gravity">top</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="add_task_date_night">
@@ -64,14 +67,16 @@
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:hint">@string/input_date</item>
-    </style
+        <item name="android:textSize">22sp</item>
+    </style>
 
-        ><style name="add_task_date_day">
+    <style name="add_task_date_day">
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:hint">@string/input_date</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="add_task_button_day">
@@ -79,7 +84,7 @@
         <item name="android:layout_marginEnd">3dp</item>
         <item name="android:text">@string/add</item>
         <item name="android:textColor">@color/add_button_text</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">21sp</item>
         <item name="cornerRadius">0dp</item>
         <item name="android:background">@drawable/button_wh_normal</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
@@ -94,7 +99,7 @@
         <item name="android:layout_marginEnd">3dp</item>
         <item name="android:text">@string/add</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">21sp</item>
         <item name="cornerRadius">0dp</item>
         <item name="android:background">@drawable/button_wh_normal</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
@@ -154,6 +159,13 @@
         <item name="android:src">@drawable/ic_add</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="switch_style">
+        <item name="android:textOn">@string/on</item>
+        <item name="android:textOff">@string/off</item>
+        <item name="android:thumb">@drawable/thumb</item>
+        <item name="track">@drawable/track</item>
     </style>
 
     <style name="add_update_button">

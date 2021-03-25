@@ -27,13 +27,14 @@
         android:paddingTop="40dp"
         android:paddingRight="16dp" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/theme_switch"
+        style="@style/switch_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
-        android:drawableStart="@drawable/ic_night_mode"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

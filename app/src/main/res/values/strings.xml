@@ -8,4 +8,6 @@
     <string name="add_subtask">Add Sub-task</string>
     <string name="add">Add Task</string>
     <string name="update">UPDATE</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
 </resources>
