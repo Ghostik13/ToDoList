@@ -1,8 +1,6 @@
 package com.example.todolist
 
-import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -17,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.todolist.data.Task
 import com.example.todolist.data.TaskViewModel
-import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_detail_task.*
 import kotlinx.android.synthetic.main.fragment_detail_task.view.*
 import kotlinx.android.synthetic.main.fragment_detail_task.view.animation_back
@@ -55,14 +52,14 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         view.update_input_name_of_task.setText(args.currentTask.name)
         view.update_description_view.setText(args.currentTask.description)
         view.update_long_date_view.text = (args.currentTask.date.toString())
-        view.updated_date_view.text = parsingDate((args.currentTask.date))
+        view.updated_date_view.text = DateCreator(args.currentTask.date).parsing
     }
 
     private fun updateTask() {
         mTaskViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         val nameOfTask = update_input_name_of_task.text.toString()
         val description = update_description_view.text.toString()
-        var date = dateCreate()
+        var date = DateCreator(LONG_DATE).today
         if (update_long_date_view.text.isNotEmpty()) {
             date = update_long_date_view.text.toString().toLong()
         }
@@ -91,35 +88,6 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         datePickerDialog.show()
     }
 
-    private fun convertDate(month: String?): String? {
-        var monthString: String? = null
-        when (month) {
-            "01" -> monthString = "Jan"
-            "02" -> monthString = "Feb"
-            "03" -> monthString = "Mar"
-            "04" -> monthString = "Apr"
-            "05" -> monthString = "May"
-            "06" -> monthString = "Jun"
-            "07" -> monthString = "Jul"
-            "08" -> monthString = "Aug"
-            "09" -> monthString = "Sep"
-            "10" -> monthString = "Oct"
-            "11" -> monthString = "Nov"
-            "12" -> monthString = "Dec"
-        }
-        return monthString
-    }
-
-    private fun parsingDate(date: Long): String? {
-        val parsedDate = date.toString().substring(4, date.toString().length)
-        var day = parsedDate.substring(2, parsedDate.length)
-        if (day.startsWith("0"))
-            day = day.replaceFirst("0", "")
-        var month: String? = parsedDate.substring(0, 2)
-        month = convertDate(month)
-        return "$day $month"
-    }
-
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         var dayOfMonthStr = dayOfMonth.toString()
         if (dayOfMonth < 10)
@@ -129,16 +97,8 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         if (monthRight < 10)
             monthStr = "0$monthStr"
         val dateText: String = "$year" + monthStr + dayOfMonthStr
-        updated_date_view.text = parsingDate(dateText.toLong())
+        updated_date_view.text = DateCreator(dateText.toLong()).parsing
         update_long_date_view.text = dateText
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private fun dateCreate(): Long {
-        val sdf = SimpleDateFormat("YYYY/MM/dd")
-        val date: String = sdf.format(Date(System.currentTimeMillis()))
-        val today = date.replace(Regex("[/]+"), "")
-        return today.toLong()
     }
 }
 

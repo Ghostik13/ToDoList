@@ -16,5 +16,7 @@
     <attr name="switchStyle" format="reference"/>
     <attr name="calendarButton" format="reference"/>
     <attr name="sortButton" format="reference"/>
+    <attr name="imageDelete" format="reference"/>
+    <attr name="textForDate" format="reference"/>
 
 </resources>

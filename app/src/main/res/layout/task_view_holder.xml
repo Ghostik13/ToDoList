@@ -21,10 +21,9 @@
 
     <ImageButton
         android:id="@+id/delete_task_button"
+        style="?imageDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,12 +31,9 @@
 
     <TextView
         android:id="@+id/date_in_holder"
-        android:textSize="12sp"
+        style="?textForDate"
         android:layout_width="30dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
         android:layout_height="wrap_content"
-        android:text="@string/_31_sep"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

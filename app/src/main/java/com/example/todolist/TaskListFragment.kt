@@ -14,11 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.data.TaskViewModel
+import kotlinx.android.synthetic.main.fragment_to_do_list.*
 import kotlinx.android.synthetic.main.fragment_to_do_list.view.*
-
-const val NIGHT_MODE = "NIGHT_MODE"
-const val SAVED_STATE = "SAVED_STATE"
-
 class TaskListFragment : Fragment() {
 
     private lateinit var mViewModel: TaskViewModel
@@ -72,11 +69,13 @@ class TaskListFragment : Fragment() {
                     adapter.setData(task)
                     flag = 1
                 })
+                sorting_button.setBackgroundResource(R.drawable.sort_button_pressed)
             } else {
                 mViewModel.readAllData.observe(viewLifecycleOwner, Observer { task ->
                     adapter.setData(task)
                     flag = 0
                 })
+                sorting_button.setBackgroundResource(R.drawable.sort_button_normal)
             }
         }
     }

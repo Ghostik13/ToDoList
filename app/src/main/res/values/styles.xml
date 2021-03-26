@@ -61,6 +61,27 @@
         <item name="android:textSize">22sp</item>
     </style>
 
+    <style name="image_delete">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
+    <style name="text_for_date_day">
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/_31_sep</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:color">@color/task_text_day</item>
+    </style>
+
+    <style name="text_for_date_night">
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/_31_sep</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:color">@color/white</item>
+    </style>
+
     <style name="add_task_date_night">
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
@@ -191,11 +212,6 @@
         <item name="android:textOff">@string/off</item>
         <item name="android:thumb">@drawable/thumb</item>
         <item name="track">@drawable/track</item>
-    </style>
-
-    <style name="add_update_button">
-        <item name="android:background">@drawable/selector_add_update</item>
-        <item name="backgroundTint">@null</item>
     </style>
 
     <style name="holder_of_edits_day">

@@ -11,6 +11,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Task>>
     val readAllDataByDate: LiveData<List<Task>>
+    val readAllSubtaskData: LiveData<List<Subtask>>
+    val readLastID: LiveData<Int>
 
     private val repository: TaskRepository
 
@@ -18,16 +20,20 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(taskDao)
         readAllData = repository.readAllData
-    }
-
-    init {
-        val taskDao = TaskDatabase.getDatabase(application).taskDao()
         readAllDataByDate = repository.readAllDataByDate
+        readAllSubtaskData = repository.readAllSubtaskData
+        readLastID = repository.readLastID
     }
 
     fun addTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addTask(task)
+        }
+    }
+
+    fun addSubTask(subtask: Subtask) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addSubTask(subtask)
         }
     }
 
@@ -37,9 +43,21 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun updateSubTask(subtask: Subtask) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateSubTask(subtask)
+        }
+    }
+
     fun deleteTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteTask(task)
+        }
+    }
+
+    fun deleteSubTask(subtask: Subtask) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteSubTask(subtask)
         }
     }
 

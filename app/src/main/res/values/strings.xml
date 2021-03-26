@@ -1,15 +1,14 @@
 <resources>
     <string name="app_name">ToDo List</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name_of_task">Name of Task</string>
     <string name="input_task">Input task …</string>
     <string name="input_description">Input description …</string>
     <string name="input_date">Input date …</string>
     <string name="add_subtask">Add Sub-task</string>
     <string name="add">Add Task</string>
-    <string name="update">UPDATE</string>
     <string name="on">on</string>
     <string name="off">off</string>
     <string name="_31_sep">31 Sep</string>
     <string name="sort_by_date">sort by date</string>
+    <string name="add_sub_task">Add Sub-task …</string>
 </resources>
