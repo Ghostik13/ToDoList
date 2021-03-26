@@ -14,5 +14,7 @@
     <attr name="addTaskButton" format="reference"/>
     <attr name="addSubtaskButton" format="reference"/>
     <attr name="switchStyle" format="reference"/>
+    <attr name="calendarButton" format="reference"/>
+    <attr name="sortButton" format="reference"/>
 
 </resources>

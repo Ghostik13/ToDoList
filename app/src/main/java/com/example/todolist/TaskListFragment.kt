@@ -1,9 +1,7 @@
 package com.example.todolist
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.data.TaskViewModel
-import kotlinx.android.synthetic.main.fragment_to_do_list.*
 import kotlinx.android.synthetic.main.fragment_to_do_list.view.*
 
 const val NIGHT_MODE = "NIGHT_MODE"
@@ -25,6 +22,7 @@ const val SAVED_STATE = "SAVED_STATE"
 class TaskListFragment : Fragment() {
 
     private lateinit var mViewModel: TaskViewModel
+    private var flag = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +30,7 @@ class TaskListFragment : Fragment() {
     ): View? {
         val view = inflater
             .inflate(R.layout.fragment_to_do_list, container, false)
+        mViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         initSwitchTheme(view)
         initRecyclerView(view)
         initFab(view)
@@ -54,7 +53,6 @@ class TaskListFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
-        mViewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         val adapter = TaskListAdapter { task ->
             mViewModel.deleteTask(task)
         }
@@ -64,6 +62,23 @@ class TaskListFragment : Fragment() {
         mViewModel.readAllData.observe(viewLifecycleOwner, Observer { task ->
             adapter.setData(task)
         })
+        initSortButton(view, adapter)
+    }
+
+    private fun initSortButton(view: View, adapter: TaskListAdapter) {
+        view.sorting_button.setOnClickListener {
+            if (flag == 0) {
+                mViewModel.readAllDataByDate.observe(viewLifecycleOwner, Observer { task ->
+                    adapter.setData(task)
+                    flag = 1
+                })
+            } else {
+                mViewModel.readAllData.observe(viewLifecycleOwner, Observer { task ->
+                    adapter.setData(task)
+                    flag = 0
+                })
+            }
+        }
     }
 
     private fun initFab(view: View) {

@@ -18,4 +18,7 @@ interface TaskDao {
     @Query("SELECT * FROM task_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Task>>
 
+    @Query("SELECT * FROM task_table ORDER BY date ASC")
+    fun readAllDataByDate(): LiveData<List<Task>>
+
 }

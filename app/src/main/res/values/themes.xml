@@ -13,6 +13,8 @@
         <item name="inputTaskDate">@style/add_task_date_day</item>
         <item name="addTaskButton">@style/add_task_button_day</item>
         <item name="addSubtaskButton">@style/add_subtask_button_day</item>
+        <item name="calendarButton">@style/calendar_btn_day</item>
+        <item name="sortButton">@style/sort_btn_day</item>
     </style>
 
     <style name="MyThemeNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -28,6 +30,8 @@
         <item name="inputTaskDate">@style/add_task_date_night</item>
         <item name="addTaskButton">@style/add_task_button_night</item>
         <item name="addSubtaskButton">@style/add_subtask_button_night</item>
+        <item name="calendarButton">@style/calendar_btn_night</item>
+        <item name="sortButton">@style/sort_btn_night</item>
     </style>
 
 </resources>

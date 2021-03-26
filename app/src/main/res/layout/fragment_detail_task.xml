@@ -27,24 +27,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/animation_back">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/update_add_button"
             style="?addTaskButton"
-            android:text="@string/update"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            android:text="UPDATE"
+            android:layout_width="309dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="-2dp"
+            app:layout_constraintStart_toEndOf="@+id/update_calendar_button"
+            app:layout_constraintTop_toBottomOf="@+id/update_description_view" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_subtask_button"
             style="?addSubtaskButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_width="376dp"
+            android:layout_height="54dp"
+            android:paddingStart="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_add_button" />
+
+
+        <ImageButton
+            android:id="@+id/update_calendar_button"
+            android:layout_width="67dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="2dp"
+            android:background="@drawable/selector_add_update"
+            android:src="@drawable/ic_calendar"
+            style="?calendarButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_description_view" />
 
 
         <EditText
@@ -62,19 +75,30 @@
             style="?inputTaskDescription"
             android:text="@string/app_name"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="140dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_input_name_of_task" />
 
-        <EditText
-            android:id="@+id/editText"
-            style="?inputTaskDate"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/updated_date_view"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/update_description_view" />
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/update_calendar_button"
+            app:layout_constraintEnd_toStartOf="@+id/update_add_button"
+            app:layout_constraintStart_toStartOf="@+id/update_calendar_button" />
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/update_long_date_view"
+            style="?dateInHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

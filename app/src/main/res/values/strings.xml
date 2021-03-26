@@ -10,4 +10,6 @@
     <string name="update">UPDATE</string>
     <string name="on">on</string>
     <string name="off">off</string>
+    <string name="_31_sep">31 Sep</string>
+    <string name="sort_by_date">sort by date</string>
 </resources>

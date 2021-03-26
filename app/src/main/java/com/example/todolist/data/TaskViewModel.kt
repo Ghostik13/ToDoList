@@ -10,12 +10,19 @@ import kotlinx.coroutines.launch
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Task>>
+    val readAllDataByDate: LiveData<List<Task>>
+
     private val repository: TaskRepository
 
     init {
-        val userDao = TaskDatabase.getDatabase(application).taskDao()
-        repository = TaskRepository(userDao)
+        val taskDao = TaskDatabase.getDatabase(application).taskDao()
+        repository = TaskRepository(taskDao)
         readAllData = repository.readAllData
+    }
+
+    init {
+        val taskDao = TaskDatabase.getDatabase(application).taskDao()
+        readAllDataByDate = repository.readAllDataByDate
     }
 
     fun addTask(task: Task) {
