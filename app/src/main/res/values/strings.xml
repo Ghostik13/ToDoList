@@ -11,4 +11,5 @@
     <string name="_31_sep">31 Sep</string>
     <string name="sort_by_date">sort by date</string>
     <string name="add_sub_task">Add Sub-task …</string>
+    <string name="update">UPDATE</string>
 </resources>

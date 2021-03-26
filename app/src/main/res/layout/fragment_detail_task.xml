@@ -30,10 +30,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/update_add_button"
             style="?addTaskButton"
-            android:text="UPDATE"
             android:layout_width="309dp"
             android:layout_height="64dp"
             android:layout_marginStart="-2dp"
+            android:text="@string/update"
             app:layout_constraintStart_toEndOf="@+id/update_calendar_button"
             app:layout_constraintTop_toBottomOf="@+id/update_description_view" />
 
@@ -47,25 +47,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_add_button" />
 
-
         <ImageButton
             android:id="@+id/update_calendar_button"
+            style="?calendarButton"
             android:layout_width="67dp"
             android:layout_height="64dp"
             android:layout_marginStart="2dp"
             android:background="@drawable/selector_add_update"
             android:src="@drawable/ic_calendar"
-            style="?calendarButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_description_view" />
-
 
         <EditText
             android:id="@+id/update_input_name_of_task"
             style="?inputTaskName"
-            android:text="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/field_of_edits"
             app:layout_constraintTop_toTopOf="@+id/field_of_edits" />
@@ -73,9 +71,9 @@
         <EditText
             android:id="@+id/update_description_view"
             style="?inputTaskDescription"
-            android:text="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="140dp"
+            android:text="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_input_name_of_task" />
@@ -84,21 +82,20 @@
             android:id="@+id/updated_date_view"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
             android:gravity="center"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/update_calendar_button"
             app:layout_constraintEnd_toStartOf="@+id/update_add_button"
             app:layout_constraintStart_toStartOf="@+id/update_calendar_button" />
 
         <TextView
-            android:visibility="invisible"
             android:id="@+id/update_long_date_view"
             style="?dateInHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

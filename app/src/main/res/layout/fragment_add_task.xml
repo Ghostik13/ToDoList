@@ -58,6 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_subtask_button" />
+
         <EditText
             android:id="@+id/input_subtask2"
             android:background="@android:color/transparent"
@@ -83,7 +84,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/input_subtask2" />
-
 
         <ImageButton
             android:id="@+id/calendar_button"
