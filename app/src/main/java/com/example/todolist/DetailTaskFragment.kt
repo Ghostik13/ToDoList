@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.todolist.data.Subtask
@@ -21,9 +20,7 @@ import kotlinx.android.synthetic.main.fragment_detail_task.*
 import kotlinx.android.synthetic.main.fragment_detail_task.view.*
 import kotlinx.android.synthetic.main.fragment_detail_task.view.add_subtask_button
 import kotlinx.android.synthetic.main.fragment_detail_task.view.animation_back
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 
 class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
@@ -33,6 +30,8 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var subTasks: List<Subtask>
     private lateinit var mTaskViewModel: TaskViewModel
     private var flag = 0
+
+    private val scope = CoroutineScope(Dispatchers.Main + CoroutineName("CScope"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,32 +53,34 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun initSubtasks(view: View) {
-        GlobalScope.launch(Dispatchers.Main) {
+        scope.launch {
             subTasks = mTaskViewModel.readCurrentSubTaskData(args.currentTask.id)
             view.update_subtask1.setText(subTasks[0].name)
             view.update_subtask2.setText(subTasks[1].name)
             view.update_subtask3.setText(subTasks[2].name)
             view.update_subtask4.setText(subTasks[3].name)
             view.update_subtask5.setText(subTasks[4].name)
-            if (subTasks[0].name != "") {
-                update_subtask1.visibility = View.VISIBLE
-                flag = 1
-            }
-            if (subTasks[1].name != "") {
-                update_subtask2.visibility = View.VISIBLE
-                flag = 2
-            }
-            if (subTasks[2].name != "") {
-                update_subtask3.visibility = View.VISIBLE
-                flag = 3
-            }
-            if (subTasks[3].name != "") {
-                update_subtask4.visibility = View.VISIBLE
-                flag = 4
-            }
-            if (subTasks[4].name != "") {
-                update_subtask5.visibility = View.VISIBLE
-                flag = 5
+            launch {
+                if (subTasks[0].name != "") {
+                    update_subtask1.visibility = View.VISIBLE
+                    flag = 1
+                }
+                if (subTasks[1].name != "") {
+                    update_subtask2.visibility = View.VISIBLE
+                    flag = 2
+                }
+                if (subTasks[2].name != "") {
+                    update_subtask3.visibility = View.VISIBLE
+                    flag = 3
+                }
+                if (subTasks[3].name != "") {
+                    update_subtask4.visibility = View.VISIBLE
+                    flag = 4
+                }
+                if (subTasks[4].name != "") {
+                    update_subtask5.visibility = View.VISIBLE
+                    flag = 5
+                }
             }
         }
     }
@@ -112,7 +113,7 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             val subTask3 = update_subtask3.text.toString()
             val subTask4 = update_subtask4.text.toString()
             val subTask5 = update_subtask5.text.toString()
-            mTaskViewModel.viewModelScope.launch(Dispatchers.Main) {
+            scope.launch(Dispatchers.Main) {
                 val updatedSubtask1 = Subtask(subTasks[0].id, args.currentTask.id, subTask1, false)
                 val updatedSubtask2 = Subtask(subTasks[1].id, args.currentTask.id, subTask2, false)
                 val updatedSubtask3 = Subtask(subTasks[2].id, args.currentTask.id, subTask3, false)

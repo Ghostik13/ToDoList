@@ -18,6 +18,8 @@ import com.example.todolist.data.Task
 import com.example.todolist.data.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_add_task.view.*
+import kotlinx.coroutines.CoroutineName
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
@@ -27,6 +29,8 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var mTaskViewModel: TaskViewModel
     private var taskId: Int = 0
     private var flag = 0
+
+    private val scope = CoroutineScope(Dispatchers.Main + CoroutineName("CScope"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +90,7 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         val subTask3 = input_subtask3.text.toString()
         val subTask4 = input_subtask4.text.toString()
         val subTask5 = input_subtask5.text.toString()
-        mTaskViewModel.viewModelScope.launch(Dispatchers.Main) {
+        scope.launch(Dispatchers.Main) {
             taskId = mTaskViewModel.readLastID()
             val subtask1 = Subtask(0, taskId, subTask1, false)
             val subtask2 = Subtask(0, taskId, subTask2, false)

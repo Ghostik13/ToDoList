@@ -61,7 +61,7 @@ class TaskListFragment : Fragment() {
                 TaskListFragmentDirections.actionTaskListFragmentToDetailTaskFragment(task)
             findNavController().navigate(action)
         }, {task ->
-            GlobalScope.launch(Dispatchers.Main) {
+            GlobalScope.launch(Dispatchers.Default) {
                 mViewModel.updateTask(task)
                 refreshFragment()
             }
@@ -69,7 +69,7 @@ class TaskListFragment : Fragment() {
         val recyclerView = view.list_of_task
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Default) {
             adapter.setData(mViewModel.readAllDataByDone())
         }
         initSortButton(view, adapter)
@@ -78,15 +78,15 @@ class TaskListFragment : Fragment() {
     private fun initSortButton(view: View, adapter: TaskListAdapter) {
         view.sorting_button.setOnClickListener {
             if (flag == 0) {
-                GlobalScope.launch(Dispatchers.Main) {
+                GlobalScope.launch(Dispatchers.Default) {
                     adapter.setData(mViewModel.readAllDataByDate())
-                }
+                }.cancel()
                 flag = 1
                 sorting_button.setBackgroundResource(R.drawable.sort_button_pressed)
             } else {
-                GlobalScope.launch(Dispatchers.Main) {
+                GlobalScope.launch(Dispatchers.Default) {
                     adapter.setData(mViewModel.readAllDataByDone())
-                }
+                }.cancel()
                 flag = 0
                 sorting_button.setBackgroundResource(R.drawable.sort_button_normal)
             }
