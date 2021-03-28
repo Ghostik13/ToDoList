@@ -3,12 +3,15 @@ package com.example.todolist
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.data.Task
 import kotlinx.android.synthetic.main.task_view_holder.view.*
 
-class TaskListAdapter(private val onClick: (Task) -> Unit) :
+class TaskListAdapter(
+    private val onClickDelete: (Task) -> Unit,
+    private val onClickUpdate: (Task) -> Unit,
+    private val onClickDone: (Task) -> Unit
+) :
     RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
     private var taskList = emptyList<Task>()
@@ -31,13 +34,30 @@ class TaskListAdapter(private val onClick: (Task) -> Unit) :
         val currentTask = taskList[position]
         holder.itemView.date_in_holder.text = DateCreator(currentTask.date).parsing
         holder.itemView.name_of_task_view.text = currentTask.name
-        holder.itemView.task_view_holder.setOnClickListener {
-            val action =
-                TaskListFragmentDirections.actionTaskListFragmentToDetailTaskFragment(currentTask)
-            holder.itemView.findNavController().navigate(action)
-        }
+        initCheckBox(currentTask, holder)
         holder.itemView.delete_task_button.setOnClickListener {
-            onClick(currentTask)
+            onClickDelete(currentTask)
+        }
+        holder.itemView.task_view_holder.setOnClickListener {
+            onClickUpdate(currentTask)
+        }
+    }
+
+    private fun initCheckBox(
+        currentTask: Task,
+        holder: TaskViewHolder
+    ) {
+        if (currentTask.done) {
+            holder.itemView.check_box.isChecked = true
+        }
+        holder.itemView.check_box.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                currentTask.done = true
+            } else if (!isChecked) {
+                currentTask.done = false
+            }
+            onClickDone(currentTask)
+            notifyDataSetChanged()
         }
     }
 

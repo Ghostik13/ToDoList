@@ -17,6 +17,7 @@
         <item name="sortButton">@style/sort_btn_day</item>
         <item name="imageDelete">@style/image_delete</item>
         <item name="textForDate">@style/text_for_date_day</item>
+        <item name="android:colorPrimary">@color/green</item>
     </style>
 
     <style name="MyThemeNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">

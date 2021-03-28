@@ -12,7 +12,8 @@ data class Task(
     val id: Int,
     val name: String,
     val description: String,
-    val date: Long
+    val date: Long,
+    var done: Boolean
 ) : Parcelable
 
 @Parcelize
@@ -20,7 +21,7 @@ data class Task(
 data class Subtask(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val task_id: Int,
+    val taskId: Int,
     val name: String,
-    val completed: Boolean
+    val done: Boolean
 ) : Parcelable

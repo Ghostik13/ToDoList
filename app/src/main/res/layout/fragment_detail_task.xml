@@ -47,6 +47,76 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_add_button" />
 
+        <EditText
+            android:visibility="invisible"
+            android:id="@+id/update_subtask1"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="17sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/add_sub_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_subtask_button" />
+
+        <EditText
+            android:visibility="invisible"
+            android:id="@+id/update_subtask2"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="17sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/add_sub_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_subtask1" />
+
+        <EditText
+            android:visibility="invisible"
+            android:id="@+id/update_subtask3"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="17sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/add_sub_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_subtask2" />
+
+        <EditText
+            android:visibility="invisible"
+            android:id="@+id/update_subtask4"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="17sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/add_sub_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_subtask3" />
+
+        <EditText
+            android:visibility="invisible"
+            android:id="@+id/update_subtask5"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:textSize="17sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:hint="@string/add_sub_task"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_subtask4" />
+
         <ImageButton
             android:id="@+id/update_calendar_button"
             style="?calendarButton"

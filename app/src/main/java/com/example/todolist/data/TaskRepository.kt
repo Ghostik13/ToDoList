@@ -1,13 +1,18 @@
 package com.example.todolist.data
 
-import androidx.lifecycle.LiveData
-
 class TaskRepository(private val taskDao: TaskDao) {
 
-    val readAllData: LiveData<List<Task>> = taskDao.readAllData()
-    val readAllDataByDate: LiveData<List<Task>> = taskDao.readAllDataByDate()
-    val readAllSubtaskData: LiveData<List<Subtask>> = taskDao.readAllSubTaskData()
-    val readLastID: LiveData<Int> = taskDao.readLastID()
+    suspend fun readLastId(): Int
+            = taskDao.readLastID()
+
+    suspend fun readAllDataByDate(): List<Task>
+            = taskDao.readAllDataByDate()
+
+    suspend fun readAllDataByDone(): List<Task>
+            = taskDao.readAllDataByDone()
+
+    suspend fun readCurrentSubTaskData(currentTaskId: Int): List<Subtask>
+            = taskDao.readCurrentSubTaskData(currentTaskId)
 
     suspend fun addTask(task: Task) {
         taskDao.addTask(task)
@@ -20,15 +25,12 @@ class TaskRepository(private val taskDao: TaskDao) {
     suspend fun deleteTask(task: Task) {
         taskDao.deleteTask(task)
     }
+
     suspend fun addSubTask(subtask: Subtask) {
         taskDao.addSubTask(subtask)
     }
 
     suspend fun updateSubTask(subtask: Subtask) {
         taskDao.updateSubTask(subtask)
-    }
-
-    suspend fun deleteSubTask(subtask: Subtask) {
-        taskDao.deleteSubTask(subtask)
     }
 }

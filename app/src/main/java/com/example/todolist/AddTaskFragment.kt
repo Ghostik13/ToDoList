@@ -11,17 +11,22 @@ import android.view.animation.AnimationUtils
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.todolist.data.Subtask
 import com.example.todolist.data.Task
 import com.example.todolist.data.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_add_task.view.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
 class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var mTaskViewModel: TaskViewModel
+    private var taskId: Int = 0
+    private var flag = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +37,7 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         initTransitionAnimation(view)
         initCalendar(view)
         initAddTaskButton(view)
+        initAddSubtaskButton(view)
         return view
     }
 
@@ -63,22 +69,35 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         if (date_long_view.text.isNotEmpty()) {
             date = date_long_view.text.toString().toLong()
         }
-        val subTask1 = input_subtask1.text.toString()
-        val subTask2 = input_subtask2.text.toString()
-        val subTask3 = input_subtask3.text.toString()
         if (inputCheck(nameOfTask)) {
-            val task = Task(0, nameOfTask, description, date)
+            val task = Task(0, nameOfTask, description, date, false)
             mTaskViewModel.addTask(task)
-            val subtask1 = Subtask(0, task.id, subTask1, false)
-            val subtask2 = Subtask(0, task.id, subTask2, false)
-            val subtask3 = Subtask(0, task.id, subTask3, false)
-            mTaskViewModel.addSubTask(subtask1)
-            mTaskViewModel.addSubTask(subtask2)
-            mTaskViewModel.addSubTask(subtask3)
+            putSubtasks()
             Toast.makeText(requireContext(), "Task added", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_addTaskFragment_to_toDoListFragment)
         } else {
             Toast.makeText(requireContext(), "Please fill out the name", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun putSubtasks() {
+        val subTask1 = input_subtask1.text.toString()
+        val subTask2 = input_subtask2.text.toString()
+        val subTask3 = input_subtask3.text.toString()
+        val subTask4 = input_subtask4.text.toString()
+        val subTask5 = input_subtask5.text.toString()
+        mTaskViewModel.viewModelScope.launch(Dispatchers.Main) {
+            taskId = mTaskViewModel.readLastID()
+            val subtask1 = Subtask(0, taskId, subTask1, false)
+            val subtask2 = Subtask(0, taskId, subTask2, false)
+            val subtask3 = Subtask(0, taskId, subTask3, false)
+            val subtask4 = Subtask(0, taskId, subTask4, false)
+            val subtask5 = Subtask(0, taskId, subTask5, false)
+            mTaskViewModel.addSubTask(subtask1)
+            mTaskViewModel.addSubTask(subtask2)
+            mTaskViewModel.addSubTask(subtask3)
+            mTaskViewModel.addSubTask(subtask4)
+            mTaskViewModel.addSubTask(subtask5)
         }
     }
 
@@ -108,5 +127,32 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         val dateText: String = "$year" + monthStr + dayOfMonthStr
         date_view.text = DateCreator(dateText.toLong()).parsing
         date_long_view.text = dateText
+    }
+
+    private fun initAddSubtaskButton(view: View) {
+        view.add_subtask_button.setOnClickListener {
+            when (flag) {
+                0 -> {
+                    view.input_subtask1.visibility = View.VISIBLE
+                    flag = 1
+                }
+                1 -> {
+                    view.input_subtask2.visibility = View.VISIBLE
+                    flag = 2
+                }
+                2 -> {
+                    view.input_subtask3.visibility = View.VISIBLE
+                    flag = 3
+                }
+                3 -> {
+                    view.input_subtask4.visibility = View.VISIBLE
+                    flag = 4
+                }
+                4 -> {
+                    view.input_subtask5.visibility = View.VISIBLE
+                    flag = 5
+                }
+            }
+        }
     }
 }

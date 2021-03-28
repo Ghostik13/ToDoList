@@ -1,6 +1,5 @@
 package com.example.todolist.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -22,17 +21,17 @@ interface TaskDao {
     suspend fun deleteTask(task: Task)
 
     @Delete
-    suspend fun deleteSubTask(subtask: Subtask)
-
-    @Query("SELECT * FROM task_table ORDER BY id ASC")
-    fun readAllData(): LiveData<List<Task>>
+    suspend fun deleteSubTask(subtask: List<Subtask>)
 
     @Query("SELECT MAX(id) FROM task_table")
-    fun readLastID(): LiveData<Int>
+    suspend fun readLastID(): Int
 
     @Query("SELECT * FROM task_table ORDER BY date ASC")
-    fun readAllDataByDate(): LiveData<List<Task>>
+    suspend fun readAllDataByDate(): List<Task>
 
-    @Query("SELECT * FROM subtask_table WHERE task_id IN (SELECT id FROM task_table)")
-    fun readAllSubTaskData(): LiveData<List<Subtask>>
+    @Query("SELECT * FROM task_table ORDER BY done ASC")
+    suspend fun readAllDataByDone(): List<Task>
+
+    @Query("SELECT * FROM subtask_table WHERE taskId = :currentTaskId")
+    suspend fun readCurrentSubTaskData(currentTaskId: Int): List<Subtask>
 }

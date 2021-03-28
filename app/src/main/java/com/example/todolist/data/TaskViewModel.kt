@@ -2,27 +2,33 @@ package com.example.todolist.data
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
-    val readAllData: LiveData<List<Task>>
-    val readAllDataByDate: LiveData<List<Task>>
-    val readAllSubtaskData: LiveData<List<Subtask>>
-    val readLastID: LiveData<Int>
-
     private val repository: TaskRepository
 
     init {
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(taskDao)
-        readAllData = repository.readAllData
-        readAllDataByDate = repository.readAllDataByDate
-        readAllSubtaskData = repository.readAllSubtaskData
-        readLastID = repository.readLastID
+    }
+
+    suspend fun readAllDataByDate(): List<Task> {
+        return repository.readAllDataByDate()
+    }
+
+    suspend fun readAllDataByDone(): List<Task> {
+        return repository.readAllDataByDone()
+    }
+
+    suspend fun readCurrentSubTaskData(currentTaskId: Int): List<Subtask> {
+        return repository.readCurrentSubTaskData(currentTaskId)
+    }
+
+    suspend fun readLastID(): Int {
+        return repository.readLastId()
     }
 
     fun addTask(task: Task) {
@@ -52,12 +58,6 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteTask(task)
-        }
-    }
-
-    fun deleteSubTask(subtask: Subtask) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteSubTask(subtask)
         }
     }
 
