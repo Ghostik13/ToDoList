@@ -3,13 +3,13 @@ package com.example.todolist
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -18,9 +18,10 @@ import com.example.todolist.data.Task
 import com.example.todolist.data.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_detail_task.*
 import kotlinx.android.synthetic.main.fragment_detail_task.view.*
-import kotlinx.android.synthetic.main.fragment_detail_task.view.add_subtask_button
-import kotlinx.android.synthetic.main.fragment_detail_task.view.animation_back
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
@@ -30,8 +31,6 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var subTasks: List<Subtask>
     private lateinit var mTaskViewModel: TaskViewModel
     private var flag = 0
-
-    private val scope = CoroutineScope(Dispatchers.Main + CoroutineName("CScope"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,37 +52,38 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun initSubtasks(view: View) {
-        scope.launch {
-            subTasks = mTaskViewModel.readCurrentSubTaskData(args.currentTask.id)
-            view.update_subtask1.setText(subTasks[0].name)
-            view.update_subtask2.setText(subTasks[1].name)
-            view.update_subtask3.setText(subTasks[2].name)
-            view.update_subtask4.setText(subTasks[3].name)
-            view.update_subtask5.setText(subTasks[4].name)
-            launch {
-                if (subTasks[0].name != "") {
-                    update_subtask1.visibility = View.VISIBLE
-                    flag = 1
-                }
-                if (subTasks[1].name != "") {
-                    update_subtask2.visibility = View.VISIBLE
-                    flag = 2
-                }
-                if (subTasks[2].name != "") {
-                    update_subtask3.visibility = View.VISIBLE
-                    flag = 3
-                }
-                if (subTasks[3].name != "") {
-                    update_subtask4.visibility = View.VISIBLE
-                    flag = 4
-                }
-                if (subTasks[4].name != "") {
-                    update_subtask5.visibility = View.VISIBLE
-                    flag = 5
-                }
+       GlobalScope.launch(Dispatchers.Main) {
+            subTasks = withContext(Dispatchers.IO) {
+                mTaskViewModel.readCurrentSubTaskData(args.currentTask.id)
+            }
+           if (subTasks[0].name != "") {
+                update_subtask1.visibility = View.VISIBLE
+                view.update_subtask1.setText(subTasks[0].name)
+                flag = 1
+            }
+            if (subTasks[1].name != "") {
+                update_subtask2.visibility = View.VISIBLE
+                view.update_subtask2.setText(subTasks[1].name)
+                flag = 2
+            }
+            if (subTasks[2].name != "") {
+                update_subtask3.visibility = View.VISIBLE
+                view.update_subtask3.setText(subTasks[2].name)
+                flag = 3
+            }
+            if (subTasks[3].name != "") {
+                update_subtask4.visibility = View.VISIBLE
+                view.update_subtask4.setText(subTasks[3].name)
+                flag = 4
+            }
+            if (subTasks[4].name != "") {
+                update_subtask5.visibility = View.VISIBLE
+                view.update_subtask5.setText(subTasks[4].name)
+                flag = 5
             }
         }
     }
+
 
     private fun initTransitionAnimation(view: View) {
         val animationBackground =
@@ -113,7 +113,6 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
             val subTask3 = update_subtask3.text.toString()
             val subTask4 = update_subtask4.text.toString()
             val subTask5 = update_subtask5.text.toString()
-            scope.launch(Dispatchers.Main) {
                 val updatedSubtask1 = Subtask(subTasks[0].id, args.currentTask.id, subTask1, false)
                 val updatedSubtask2 = Subtask(subTasks[1].id, args.currentTask.id, subTask2, false)
                 val updatedSubtask3 = Subtask(subTasks[2].id, args.currentTask.id, subTask3, false)
@@ -124,7 +123,6 @@ class DetailTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
                 mTaskViewModel.updateSubTask(updatedSubtask3)
                 mTaskViewModel.updateSubTask(updatedSubtask4)
                 mTaskViewModel.updateSubTask(updatedSubtask5)
-            }
             Toast.makeText(requireContext(), "Task updated", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_detailTaskFragment_to_task_list_fragment)
         } else {

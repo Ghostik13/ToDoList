@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.todolist.data.Task
 import com.example.todolist.data.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_to_do_list.*
 import kotlinx.android.synthetic.main.fragment_to_do_list.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TaskListFragment : Fragment() {
 
@@ -60,8 +62,8 @@ class TaskListFragment : Fragment() {
             val action =
                 TaskListFragmentDirections.actionTaskListFragmentToDetailTaskFragment(task)
             findNavController().navigate(action)
-        }, {task ->
-            GlobalScope.launch(Dispatchers.Default) {
+        }, { task ->
+            GlobalScope.launch(Dispatchers.IO) {
                 mViewModel.updateTask(task)
                 refreshFragment()
             }
@@ -69,8 +71,11 @@ class TaskListFragment : Fragment() {
         val recyclerView = view.list_of_task
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        GlobalScope.launch(Dispatchers.Default) {
-            adapter.setData(mViewModel.readAllDataByDone())
+        GlobalScope.launch(Dispatchers.Main) {
+            val listOfData = withContext(Dispatchers.IO) {
+                mViewModel.readAllDataByDone()
+            }
+            adapter.setData(listOfData)
         }
         initSortButton(view, adapter)
     }
@@ -79,13 +84,19 @@ class TaskListFragment : Fragment() {
         view.sorting_button.setOnClickListener {
             if (flag == 0) {
                 GlobalScope.launch(Dispatchers.Main) {
-                    adapter.setData(mViewModel.readAllDataByDate())
+                    val listOfData = withContext(Dispatchers.IO) {
+                        mViewModel.readAllDataByDate()
+                    }
+                    adapter.setData(listOfData)
                 }
                 flag = 1
                 sorting_button.setBackgroundResource(R.drawable.sort_button_pressed)
             } else {
                 GlobalScope.launch(Dispatchers.Main) {
-                    adapter.setData(mViewModel.readAllDataByDone())
+                    val listOfData = withContext(Dispatchers.IO) {
+                        mViewModel.readAllDataByDone()
+                    }
+                    adapter.setData(listOfData)
                 }
                 flag = 0
                 sorting_button.setBackgroundResource(R.drawable.sort_button_normal)

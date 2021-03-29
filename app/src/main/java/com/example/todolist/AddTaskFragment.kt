@@ -11,17 +11,13 @@ import android.view.animation.AnimationUtils
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.todolist.data.Subtask
 import com.example.todolist.data.Task
 import com.example.todolist.data.TaskViewModel
 import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_add_task.view.*
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 
 class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
@@ -29,8 +25,6 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     private lateinit var mTaskViewModel: TaskViewModel
     private var taskId: Int = 0
     private var flag = 0
-
-    private val scope = CoroutineScope(Dispatchers.Main + CoroutineName("CScope"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,13 +79,15 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
     }
 
     private fun putSubtasks() {
-        val subTask1 = input_subtask1.text.toString()
-        val subTask2 = input_subtask2.text.toString()
-        val subTask3 = input_subtask3.text.toString()
-        val subTask4 = input_subtask4.text.toString()
-        val subTask5 = input_subtask5.text.toString()
-        scope.launch(Dispatchers.Main) {
-            taskId = mTaskViewModel.readLastID()
+        GlobalScope.launch(Dispatchers.Main) {
+            val subTask1 = input_subtask1.text.toString()
+            val subTask2 = input_subtask2.text.toString()
+            val subTask3 = input_subtask3.text.toString()
+            val subTask4 = input_subtask4.text.toString()
+            val subTask5 = input_subtask5.text.toString()
+            taskId = withContext(Dispatchers.IO) {
+                mTaskViewModel.readLastID()
+            }
             val subtask1 = Subtask(0, taskId, subTask1, false)
             val subtask2 = Subtask(0, taskId, subTask2, false)
             val subtask3 = Subtask(0, taskId, subTask3, false)
