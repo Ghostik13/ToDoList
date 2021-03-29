@@ -78,15 +78,15 @@ class TaskListFragment : Fragment() {
     private fun initSortButton(view: View, adapter: TaskListAdapter) {
         view.sorting_button.setOnClickListener {
             if (flag == 0) {
-                GlobalScope.launch(Dispatchers.Default) {
+                GlobalScope.launch(Dispatchers.Main) {
                     adapter.setData(mViewModel.readAllDataByDate())
-                }.cancel()
+                }
                 flag = 1
                 sorting_button.setBackgroundResource(R.drawable.sort_button_pressed)
             } else {
-                GlobalScope.launch(Dispatchers.Default) {
+                GlobalScope.launch(Dispatchers.Main) {
                     adapter.setData(mViewModel.readAllDataByDone())
-                }.cancel()
+                }
                 flag = 0
                 sorting_button.setBackgroundResource(R.drawable.sort_button_normal)
             }
