@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_add_task.view.*
 import kotlinx.coroutines.*
 import java.util.*
+import kotlin.random.Random
 
 class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
 
@@ -35,7 +36,6 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         initTransitionAnimation(view)
         initCalendar(view)
         initAddTaskButton(view)
-        initAddSubtaskButton(view)
         return view
     }
 
@@ -101,6 +101,7 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         }
     }
 
+
     private fun inputCheck(nameOfTask: String): Boolean {
         return !(TextUtils.isEmpty(nameOfTask))
     }
@@ -127,32 +128,5 @@ class AddTaskFragment : Fragment(), DatePickerDialog.OnDateSetListener {
         val dateText: String = "$year" + monthStr + dayOfMonthStr
         date_view.text = DateCreator(dateText.toLong()).parsing
         date_long_view.text = dateText
-    }
-
-    private fun initAddSubtaskButton(view: View) {
-        view.add_subtask_button.setOnClickListener {
-            when (flag) {
-                0 -> {
-                    view.input_subtask1.visibility = View.VISIBLE
-                    flag = 1
-                }
-                1 -> {
-                    view.input_subtask2.visibility = View.VISIBLE
-                    flag = 2
-                }
-                2 -> {
-                    view.input_subtask3.visibility = View.VISIBLE
-                    flag = 3
-                }
-                3 -> {
-                    view.input_subtask4.visibility = View.VISIBLE
-                    flag = 4
-                }
-                4 -> {
-                    view.input_subtask5.visibility = View.VISIBLE
-                    flag = 5
-                }
-            }
-        }
     }
 }

@@ -9,12 +9,13 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_bar"
-        style="?fabColor"
         android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_add"
+        style="?fabColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -25,7 +26,9 @@
         android:layout_gravity="center_horizontal"
         android:paddingLeft="16dp"
         android:paddingTop="70dp"
-        android:paddingRight="16dp" />
+        android:paddingRight="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/theme_switch"

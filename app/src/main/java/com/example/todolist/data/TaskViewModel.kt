@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -27,8 +28,8 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         return repository.readCurrentSubTaskData(currentTaskId)
     }
 
-    suspend fun readLastID(): Int {
-        return repository.readLastId()
+    suspend fun readLastID(): Int = withContext(Dispatchers.IO){
+        repository.readLastId()
     }
 
     fun addTask(task: Task) {
