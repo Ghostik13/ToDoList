@@ -5,7 +5,7 @@
     style="?mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TaskListFragment">
+    tools:context=".presentation.taskList.TaskListFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_action_bar"

@@ -1,10 +1,12 @@
-package com.example.todolist
+package com.example.todolist.presentation.taskList
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.todolist.data.Task
+import com.example.todolist.DateCreator
+import com.example.todolist.R
+import com.example.todolist.data.model.Task
 import kotlinx.android.synthetic.main.task_view_holder.view.*
 
 class TaskListAdapter(
@@ -23,7 +25,9 @@ class TaskListAdapter(
                 parent,
                 false
             )
-        return TaskViewHolder(view)
+        return TaskViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {
@@ -32,7 +36,9 @@ class TaskListAdapter(
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val currentTask = taskList[position]
-        holder.itemView.date_in_holder.text = DateCreator(currentTask.date).parsing
+        holder.itemView.date_in_holder.text = DateCreator(
+            currentTask.date
+        ).parsing
         holder.itemView.name_of_task_view.text = currentTask.name
         initCheckBox(currentTask, holder)
         holder.itemView.delete_task_button.setOnClickListener {

@@ -1,6 +1,8 @@
-package com.example.todolist.data
+package com.example.todolist.domain
 
 import androidx.room.*
+import com.example.todolist.data.model.Subtask
+import com.example.todolist.data.model.Task
 
 @Dao
 interface TaskDao {
@@ -19,9 +21,6 @@ interface TaskDao {
 
     @Delete
     suspend fun deleteTask(task: Task)
-
-    @Delete
-    suspend fun deleteSubTask(subtask: List<Subtask>)
 
     @Query("SELECT MAX(id) FROM task_table")
     suspend fun readLastID(): Int

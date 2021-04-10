@@ -5,7 +5,7 @@
     style="?mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailTaskFragment">
+    tools:context=".presentation.taskDetail.DetailTaskFragment">
 
     <FrameLayout
         android:id="@+id/animation_back"
@@ -48,7 +48,6 @@
             app:layout_constraintTop_toBottomOf="@+id/update_add_button" />
 
         <EditText
-            android:visibility="invisible"
             android:id="@+id/update_subtask1"
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
@@ -62,7 +61,6 @@
             app:layout_constraintTop_toBottomOf="@+id/add_subtask_button" />
 
         <EditText
-            android:visibility="invisible"
             android:id="@+id/update_subtask2"
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
@@ -76,7 +74,6 @@
             app:layout_constraintTop_toBottomOf="@+id/update_subtask1" />
 
         <EditText
-            android:visibility="invisible"
             android:id="@+id/update_subtask3"
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
@@ -90,7 +87,6 @@
             app:layout_constraintTop_toBottomOf="@+id/update_subtask2" />
 
         <EditText
-            android:visibility="invisible"
             android:id="@+id/update_subtask4"
             android:background="@android:color/transparent"
             android:layout_width="match_parent"
@@ -104,7 +100,6 @@
             app:layout_constraintTop_toBottomOf="@+id/update_subtask3" />
 
         <EditText
-            android:visibility="invisible"
             android:id="@+id/update_subtask5"
             android:background="@android:color/transparent"
             android:layout_width="match_parent"

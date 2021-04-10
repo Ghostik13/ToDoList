@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/task_list_fragment"
-        android:name="com.example.todolist.TaskListFragment"
+        android:name="com.example.todolist.presentation.taskList.TaskListFragment"
         android:label="Tasks"
         tools:layout="@layout/fragment_to_do_list" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/add_task_fragment"
-        android:name="com.example.todolist.AddTaskFragment"
+        android:name="com.example.todolist.presentation.taskAdd.AddTaskFragment"
         android:label="Add"
         tools:layout="@layout/fragment_add_task" >
         <action
@@ -31,18 +31,18 @@
             app:destination="@id/detailTaskFragment" />
         <argument
             android:name="curTask"
-            app:argType="com.example.todolist.data.Task" />
+            app:argType="com.example.todolist.data.model.Task" />
     </fragment>
     <fragment
         android:id="@+id/detailTaskFragment"
-        android:name="com.example.todolist.DetailTaskFragment"
+        android:name="com.example.todolist.presentation.taskDetail.DetailTaskFragment"
         android:label="DetailTaskFragment" >
         <action
             android:id="@+id/action_detailTaskFragment_to_task_list_fragment"
             app:destination="@id/task_list_fragment" />
         <argument
             android:name="currentTask"
-            app:argType="com.example.todolist.data.Task" />
+            app:argType="com.example.todolist.data.model.Task" />
     </fragment>
 
 </navigation>

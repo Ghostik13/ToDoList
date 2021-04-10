@@ -72,4 +72,8 @@ dependencies {
     //DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
+    implementation 'tech.schoolhelper:moxy-x:1.7.0'
+    implementation 'tech.schoolhelper:moxy-x-androidx:1.7.0'
+    kapt 'tech.schoolhelper:moxy-x-compiler:1.7.0'
+    annotationProcessor "tech.schoolhelper:moxy-x-compiler:1.7.0"
 }

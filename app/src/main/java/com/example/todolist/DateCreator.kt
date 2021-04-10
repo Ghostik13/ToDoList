@@ -39,7 +39,7 @@ class DateCreator(date: Long) {
 
     private fun dateCreate(): Long {
         val sdf = SimpleDateFormat("YYYY/MM/dd")
-        val date: String = sdf.format(Date(System.currentTimeMillis()))
+        val date: String = sdf.format(Date())
         val today = date.replace(Regex("[/]+"), "")
         return today.toLong()
     }
