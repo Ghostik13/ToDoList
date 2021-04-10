@@ -26,9 +26,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
+import javax.inject.Inject
 
 @InjectViewState
-class TaskDetailPresenterImpl(application: Application) : TaskDetailPresenter,
+class TaskDetailPresenterImpl @Inject constructor(application: Application) : TaskDetailPresenter,
     MvpPresenter<DetailTaskView>() {
 
     private lateinit var datePickerDialog: DatePickerDialog

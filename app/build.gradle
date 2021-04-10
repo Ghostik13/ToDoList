@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion 29
@@ -72,8 +73,13 @@ dependencies {
     //DataBinding
     kapt "com.android.databinding:compiler:3.2.0-alpha10"
 
+    //Moxy
     implementation 'tech.schoolhelper:moxy-x:1.7.0'
     implementation 'tech.schoolhelper:moxy-x-androidx:1.7.0'
     kapt 'tech.schoolhelper:moxy-x-compiler:1.7.0'
     annotationProcessor "tech.schoolhelper:moxy-x-compiler:1.7.0"
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 }

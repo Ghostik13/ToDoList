@@ -16,12 +16,14 @@ import com.example.todolist.presentation.presenters.taskListPresenter.TaskListPr
 import com.example.todolist.presentation.presenters.taskListPresenter.TaskListPresenterImpl
 import com.example.todolist.util.NIGHT_MODE
 import com.example.todolist.util.SAVED_STATE
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_to_do_list.*
 import kotlinx.android.synthetic.main.fragment_to_do_list.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class TaskListFragment : MvpAppCompatFragment(), TaskListView {
 
     @ProvidePresenter

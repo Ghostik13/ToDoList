@@ -4,8 +4,9 @@ import com.example.todolist.data.model.Subtask
 import com.example.todolist.data.model.Task
 import com.example.todolist.domain.TaskDao
 import com.example.todolist.domain.TaskRepository
+import javax.inject.Inject
 
-class TaskRepositoryImpl(private val taskDao: TaskDao): TaskRepository {
+class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao): TaskRepository {
 
     override suspend fun readLastId(): Int
             = taskDao.readLastID()

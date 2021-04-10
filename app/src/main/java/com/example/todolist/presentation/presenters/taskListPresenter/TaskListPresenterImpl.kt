@@ -19,9 +19,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @InjectViewState
-class TaskListPresenterImpl(application: Application) : TaskListPresenter,
+class TaskListPresenterImpl @Inject constructor(application: Application) : TaskListPresenter,
     MvpPresenter<TaskListView>() {
 
     private val repository: TaskRepositoryImpl

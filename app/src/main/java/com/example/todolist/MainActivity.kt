@@ -7,7 +7,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.todolist.util.NIGHT_MODE
 import com.example.todolist.util.SAVED_STATE
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
