@@ -1,15 +1,15 @@
 package com.example.todolist.di
 
 import android.app.Application
-import com.example.todolist.ToDoApplication
 import com.example.todolist.data.TaskDatabase
 import com.example.todolist.domain.TaskDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ToDoApplication::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
