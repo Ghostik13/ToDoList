@@ -12,6 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.todolist.R
+import com.example.todolist.data.TaskRepositoryImpl
+import com.example.todolist.domain.TaskDao
+import com.example.todolist.domain.TaskDao_Impl
+import com.example.todolist.domain.TaskRepository
 import com.example.todolist.presentation.presenters.taskListPresenter.TaskListPresenter
 import com.example.todolist.presentation.presenters.taskListPresenter.TaskListPresenterImpl
 import com.example.todolist.util.NIGHT_MODE
@@ -28,9 +32,7 @@ class TaskListFragment : MvpAppCompatFragment(), TaskListView {
 
     @ProvidePresenter
     fun provideTaskListPresenter(): TaskListPresenter {
-        return TaskListPresenterImpl(
-            requireActivity().application
-        )
+        return TaskListPresenterImpl()
     }
 
     override fun onCreateView(

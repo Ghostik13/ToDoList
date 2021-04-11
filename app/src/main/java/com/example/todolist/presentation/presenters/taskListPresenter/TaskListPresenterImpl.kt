@@ -1,6 +1,5 @@
 package com.example.todolist.presentation.presenters.taskListPresenter
 
-import android.app.Application
 import android.content.Context
 import android.widget.Button
 import androidx.navigation.NavController
@@ -9,9 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.todolist.R
-import com.example.todolist.data.TaskDatabase
+import com.example.todolist.ToDoApplication
 import com.example.todolist.data.TaskRepositoryImpl
-import com.example.todolist.presentation.presenters.taskListPresenter.TaskListPresenter
 import com.example.todolist.presentation.taskList.TaskListAdapter
 import com.example.todolist.presentation.taskList.TaskListFragmentDirections
 import com.example.todolist.presentation.taskList.TaskListView
@@ -22,14 +20,15 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @InjectViewState
-class TaskListPresenterImpl @Inject constructor(application: Application) : TaskListPresenter,
+class TaskListPresenterImpl @Inject constructor() :
+    TaskListPresenter,
     MvpPresenter<TaskListView>() {
 
-    private val repository: TaskRepositoryImpl
     private var flag = 0
 
+    private val repository: TaskRepositoryImpl
     init {
-        val taskDao = TaskDatabase.getDatabase(application).taskDao()
+        val taskDao = ToDoApplication.dao
         repository = TaskRepositoryImpl(taskDao)
     }
 
@@ -51,7 +50,9 @@ class TaskListPresenterImpl @Inject constructor(application: Application) : Task
             }, { task ->
                 GlobalScope.launch(Dispatchers.IO) {
                     repository.updateTask(task)
-                    refreshFragment(nc)
+                    withContext(Dispatchers.Main){
+                        refreshFragment(nc)
+                    }
                 }
             })
         rv.adapter = adapter

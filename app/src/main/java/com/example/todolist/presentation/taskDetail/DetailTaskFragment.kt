@@ -27,9 +27,7 @@ class DetailTaskFragment : MvpAppCompatFragment(), DetailTaskView,
 
     @ProvidePresenter
     fun provideTaskDetailPresenter(): TaskDetailPresenter {
-        return TaskDetailPresenterImpl(
-            requireActivity().application
-        )
+        return TaskDetailPresenterImpl()
     }
 
     override fun onCreateView(

@@ -1,8 +1,6 @@
 package com.example.todolist.data
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.todolist.data.model.Subtask
 import com.example.todolist.data.model.Task
@@ -12,25 +10,4 @@ import com.example.todolist.domain.TaskDao
 abstract class TaskDatabase : RoomDatabase() {
 
     abstract fun taskDao(): TaskDao
-
-    companion object {
-
-        @Volatile
-        private var INSTANCE: TaskDatabase? = null
-
-        fun getDatabase(context: Context): TaskDatabase {
-            val tempInstance = INSTANCE
-            if (tempInstance != null)
-                return tempInstance
-            synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TaskDatabase::class.java,
-                    "task_table"
-                ).build()
-                INSTANCE = instance
-                return instance
-            }
-        }
-    }
 }

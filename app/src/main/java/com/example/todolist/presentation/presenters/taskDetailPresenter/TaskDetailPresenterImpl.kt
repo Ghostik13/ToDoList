@@ -1,6 +1,5 @@
 package com.example.todolist.presentation.presenters.taskDetailPresenter
 
-import android.app.Application
 import android.app.DatePickerDialog
 import android.content.Context
 import android.text.TextUtils
@@ -13,7 +12,7 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.example.todolist.DateCreator
 import com.example.todolist.R
-import com.example.todolist.data.TaskDatabase
+import com.example.todolist.ToDoApplication
 import com.example.todolist.data.TaskRepositoryImpl
 import com.example.todolist.data.model.Subtask
 import com.example.todolist.data.model.Task
@@ -29,18 +28,18 @@ import java.util.*
 import javax.inject.Inject
 
 @InjectViewState
-class TaskDetailPresenterImpl @Inject constructor(application: Application) : TaskDetailPresenter,
+class TaskDetailPresenterImpl @Inject constructor() :
+    TaskDetailPresenter,
     MvpPresenter<DetailTaskView>() {
 
     private lateinit var datePickerDialog: DatePickerDialog
-    private val repository: TaskRepositoryImpl
+    private lateinit var subTasks: List<Subtask>
 
+    private val repository: TaskRepositoryImpl
     init {
-        val taskDao = TaskDatabase.getDatabase(application).taskDao()
+        val taskDao = ToDoApplication.dao
         repository = TaskRepositoryImpl(taskDao)
     }
-
-    private lateinit var subTasks: List<Subtask>
 
     override fun showDatePicker(listener: DatePickerDialog.OnDateSetListener, context: Context) {
         datePickerDialog = DatePickerDialog(
@@ -137,6 +136,9 @@ class TaskDetailPresenterImpl @Inject constructor(application: Application) : Ta
             )
             GlobalScope.launch(Dispatchers.IO) {
                 repository.updateTask(updatedTask)
+            }
+            subTasks = withContext(Dispatchers.IO) {
+                repository.readCurrentSubTaskData(args.currentTask.id)
             }
             val subTask1 = et3.text.toString()
             val subTask2 = et4.text.toString()

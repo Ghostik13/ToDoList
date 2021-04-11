@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.example.todolist.R
+import com.example.todolist.domain.TaskRepository
 import com.example.todolist.presentation.presenters.taskAddPresenter.TaskAddPresenter
 import com.example.todolist.presentation.presenters.taskAddPresenter.TaskAddPresenterImpl
 import kotlinx.android.synthetic.main.fragment_add_task.*
@@ -21,9 +22,7 @@ class AddTaskFragment : MvpAppCompatFragment(), AddTaskView, DatePickerDialog.On
 
     @ProvidePresenter
     fun provideTaskAddPresenter(): TaskAddPresenter {
-        return TaskAddPresenterImpl(
-            requireActivity().application
-        )
+        return TaskAddPresenterImpl()
     }
 
     override fun onCreateView(
